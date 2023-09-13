@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { ProductQuery } from '../../../routers/Product/produt.routes';
+import { ProductQuery } from '../../../../utils/product';
 
 
 export class ProductRepository {

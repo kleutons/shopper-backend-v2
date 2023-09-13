@@ -1,9 +1,6 @@
 import { FastifyInstance } from "fastify";
 import {  ProductRepository } from "../../modules/Product/Repositories/ProductsRepository";
-
-export interface ProductQuery {
-    code?: string; 
-}
+import { ProductQuery } from "../../../utils/product";
 
 
 const productRepository = new ProductRepository();
