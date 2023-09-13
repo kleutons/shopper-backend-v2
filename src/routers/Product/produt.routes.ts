@@ -1,21 +1,21 @@
 import { FastifyInstance } from "fastify";
-import {  ProductRepository } from "../../modules/Product/Repositories/ProductsRepository";
 import { ProductQuery } from "../../../utils/product";
+import { ProductsControlles } from "../../modules/Product/Controllers/ProductsController";
 
 
-const productRepository = new ProductRepository();
+const productsControlles = new ProductsControlles();
 
 export default function productRoute(server: FastifyInstance, baseUrlRouter: string ){
 
      server.get<{ Querystring: ProductQuery }>(baseUrlRouter, (request, reply) => {
-        productRepository.list(request, reply);
+        productsControlles.listProduct(request, reply);
     });
 
     server.post(baseUrlRouter+'/update-csv', (request, reply) => {
-        productRepository.postUpdataCSV(request, reply);
+        productsControlles.checkCSV(request, reply);
     });   
 
     server.put(baseUrlRouter+'/update-csv', (request, reply) => {
-        productRepository.putUpdataCSV(request, reply);
+        productsControlles.updateProductsCSV(request, reply);
     });
 }

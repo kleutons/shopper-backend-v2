@@ -1,29 +1,69 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { ProductQuery } from '../../../../utils/product';
-
+import { db } from "../../../knex/database";
 
 export class ProductRepository {
-    list(request: FastifyRequest<{ Querystring: ProductQuery }>, reply: FastifyReply) {
-        const queryParams = request.query;
 
-        if ('code' in queryParams) {
-            const productId = queryParams.code;
-            reply.send('Exibe produto com codigo =' + productId);
-        } else if ('unique' in queryParams) {
-            const unique = queryParams.unique;
-            const productsUnique: boolean = unique == 'false' ? false : true;
-            reply.send('Exibe produtos unicos =' + productsUnique);
-        } else {
-            reply.send('Lista todos os produtos');
+    table = "products";
+
+    selectProduct(code?:[ number ], unique?: boolean){
+
+        const selectTable = db(this.table);
+
+        if(!code && unique === undefined){
+
+            return selectTable.then((dataItem) => {
+                return dataItem;
+            }).catch((err) => {
+                console.log(err);
+                return [{
+                            "error" : "Erro ao consultar Banco de dados!"
+                        }];
+            })
+            
+        }else
+        if(!code && unique !== undefined){
+
+            if(unique){
+                const  select = selectTable.whereNotIn('code', db('packs').select('pack_id'));
+            
+                return  select.then((dataItem) => {
+                    return dataItem;
+                }).catch((err) => {
+                    console.log(err);
+                    return [{
+                                "error" : "Erro ao consultar Banco de dadoos!"
+                            }];
+                })
+                
+            }else{
+                const select = selectTable.whereIn('code', db('packs').select('pack_id'));
+
+                return  select.then((dataItem) => {
+                    return dataItem;
+                }).catch((err) => {
+                    console.log(err);
+                    return [{
+                                "error" : "Erro ao consultar Banco de dados!"
+                            }];
+                })
+    
+            }
+
+        }else
+        // product/code
+        if(code && Array.isArray(code)){
+
+
+            const select = selectTable.whereIn('code', code);
+                return  select.then((dataItem) => {
+                    return dataItem;
+                }).catch((err) => {
+                    console.log(err);
+                    return [{
+                                "error" : "Erro ao consultar Banco de dados!"
+                            }];
+                })
+    
         }
-        
-    }
 
-    postUpdataCSV(request: FastifyRequest, reply: FastifyReply ){
-        reply.send('Valida CSV');
-    }
-
-    putUpdataCSV(request: FastifyRequest, reply: FastifyReply ){
-        reply.send('Updade bulk CSV');
     }
 }
