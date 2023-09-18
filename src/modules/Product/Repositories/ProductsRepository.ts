@@ -13,10 +13,8 @@ export class ProductRepository {
             return selectTable.then((dataItem) => {
                 return dataItem;
             }).catch((err) => {
-                console.log(err);
-                return [{
-                            "error" : "Erro ao consultar Banco de dados!"
-                        }];
+                
+                return "Erro ao consultar Banco de dados!";
             })
             
         }else
@@ -28,10 +26,8 @@ export class ProductRepository {
                 return  select.then((dataItem) => {
                     return dataItem;
                 }).catch((err) => {
-                    console.log(err);
-                    return [{
-                                "error" : "Erro ao consultar Banco de dadoos!"
-                            }];
+                    // console.log(err);
+                    return  "Erro ao consultar Banco de dadoos!";
                 })
                 
             }else{
@@ -40,10 +36,8 @@ export class ProductRepository {
                 return  select.then((dataItem) => {
                     return dataItem;
                 }).catch((err) => {
-                    console.log(err);
-                    return [{
-                                "error" : "Erro ao consultar Banco de dados!"
-                            }];
+                    // console.log(err);
+                    return  "Erro ao consultar Banco de dados!";
                 })
     
             }
@@ -57,10 +51,8 @@ export class ProductRepository {
                 return  select.then((dataItem) => {
                     return dataItem;
                 }).catch((err) => {
-                    console.log(err);
-                    return [{
-                                "error" : "Erro ao consultar Banco de dados!"
-                            }];
+                    // console.log(err);
+                    return  "Erro ao consultar Banco de dados!";
                 })
     
         }

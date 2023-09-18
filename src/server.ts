@@ -8,7 +8,7 @@ const server = fastify();
 const port =  Number(process.env.SERVER_PORT) || 3001;
 
 server.get('/', () => {
-    return 'Servidor Iniciado com sucesso!'
+    return 'Server is Run!'
 })
 
 
@@ -22,5 +22,5 @@ server.listen({
         console.error(err)
         process.exit(1)
     }
-    console.log(`Servidor iniciado na porta ${port} Acesse: ${address}`);
+    console.log(`Server is Run port ${port} Acesse: ${address}`);
 })  
