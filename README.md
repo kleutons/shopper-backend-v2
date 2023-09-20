@@ -81,9 +81,9 @@ http://localhost:3002/
 [atualizacao_preco_exemplo.csv](./database/atualizacao_preco_exemplo.csv)
 
 
-### Para acessar site Fronteend
-Siga os passos descrito no Readme do repositório referente ao servidor frontend: 
-- https://github.com/kleutons/shopper-frontend
+### Para acessar o projeto Fronteend
+Siga os passos descrito no Readme do repositório referente ao projeto frontend: 
+- https://github.com/kleutons/shopper-frontend-v2 
 
 ## 👨‍💻 Sobre Mim
 ### Made with 💙 by [@kleutons](https://github.com/kleutons)
