@@ -40,29 +40,39 @@ git clone https://github.com/kleutons/shopper-backend-v2
 ```bash
 npm install
 ```
+3. Configurar aquivo .env e colocar na raiz da pasta do servidor, exemplo:
+```
+SERVER_PORT = 3002
 
-3. Executar Front-end
+DB_USER = "root"
+DB_PASSWORD = "pass"
+DB_DATABASE = "shopper"
+DB_HOST = "localhost"
+DB_PORT = 3306
+```
+
+4. Executar Front-end
 ```bash
 npm run dev
 ```
 
-4. Acessar Servidor BACKEND na porta: 3002
+5. Acessar Servidor BACKEND na porta: 3002  -> porta configurável no arquivo .env
 ```
 http://localhost:3002/
 ```
 
-4. ROTAS Disponíveis
+6. ROTAS Disponíveis
 - http://localhost:3002/product => Rota GET para listar todos produtos
 - http://localhost:3002/product?unique => Rota GET para listar produtos únicos, que não fazem parte de uma kit
 - localhost:3002/product?unique=false  => Rota GET para listar produtos que é corresponde um kit de produtos
 - http://localhost:3002/product/update-csv  => Rota POST para receber upload de arquivo CSV e retornar se está válido
 - http://localhost:3002/product/update-csv  => Rota PUT que também recebe upload de arquivo CSV e se for válido atualiza em massa o dados no banco de dados SQL
 
-5. Arquivo DATABASE para enviar no servidor mysql, está na pasta /database
+7. Arquivo DATABASE para enviar no servidor mysql, está na pasta /database
 
 [database.sql](./database/database.sql)
 
-6. Arquivo para testes CSV para testar upload no servidor, está na pasta /database
+8. Arquivo para testes CSV para testar upload no servidor, está na pasta /database
 
 [atualizacao_preco_exemplo.csv](./database/atualizacao_preco_exemplo.csv)
 
