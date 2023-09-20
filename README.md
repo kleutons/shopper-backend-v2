@@ -1,4 +1,4 @@
-# 🚀 Desafio FullStak Shopper.com.br (Repositório BACKEND - VERSÂO 2)
+# 🚀 Desafio FullStak Shopper.com.br (Repositório BACKEND - VERSÃO 2)
 
 Bem-vindo(a). Este é o desafio BACKEND, para a Shopper.com.br!
 O objetivo deste desafio é um teste técnico para avaliar habilidades em desenvolvimento de software.
