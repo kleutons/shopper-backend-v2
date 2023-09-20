@@ -51,7 +51,21 @@ export default function productRoute(server: FastifyInstance, baseUrlRouter: str
 
     });   
 
-    server.put(baseUrlRouter+'/update-csv', (request, reply) => {
-        productsControlles.updateProductsCSV(request, reply);
+    server.put(baseUrlRouter+'/update-csv',
+                { preHandler: upload.single('file') }, 
+                async (request: CustomFastifyRequest, reply:FastifyReply) => {
+      
+      if (!request.file) {
+          reply.status(400).send("Nenhum arquivo foi enviado");
+          return;
+      }
+      
+      const { buffer } = request.file;
+      const fileCSV = new Readable();
+      fileCSV.push(buffer);
+      fileCSV.push(null);  
+
+      await productsControlles.updateProductsCSV(fileCSV, request, reply);
     });
+
 }

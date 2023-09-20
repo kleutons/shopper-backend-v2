@@ -30,3 +30,9 @@ export interface TypeProductValidade extends TypeProduct {
     composePack:TypeComposePack[] | null;
     validadeError: string[] | null;
 }
+
+export type TypeUpdateDB = {
+    code: number;
+    sales_price: number;
+  }
+  

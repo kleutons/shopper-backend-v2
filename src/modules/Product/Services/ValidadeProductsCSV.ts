@@ -13,12 +13,13 @@ export class ValidadeProductsCSV {
 
     public async execute(headerFile: string[], contentFile: string[][]){
 
-        let isValid = true;
         const productsValidade: TypeProductValidade[] = [];
 
         const errorHeader: string[] | null = this.checkHeaderLine(headerFile);
-        // invalida se tiver erro no header
-        isValid = errorHeader ? false : true;
+
+        if(errorHeader){
+            return { errorHeader };
+        }
 
         function pushError(name: string, code: number, newPrice: number, msgError: string[]):TypeProductValidade{
             return {
@@ -66,12 +67,9 @@ export class ValidadeProductsCSV {
                        const selectComposerPack = await this.checkComposeInPack(contentFile, selectProduct.code);
                        const selectItensPack = await this.checkListPack(contentFile, lineCodeProduct, lineNewpriceProduct );
                        
-                       console.log('-------------------------------------------------------------');
-                       console.log(lineCodeProduct);
+             
 
                        if(selectComposerPack) {
-                            console.log('selectComposerPack');
-                            console.log(selectComposerPack);
                             typeProductSelect = selectComposerPack.typeProduct;
                             const iPSelect = selectComposerPack.composePack;
                             composePackSelect = iPSelect && iPSelect.length > 0 ? iPSelect : null;
@@ -79,18 +77,12 @@ export class ValidadeProductsCSV {
                         }
 
                        if(selectItensPack && !selectComposerPack.composePack){
-                            console.log('selectItensPack');
-                            console.log(selectItensPack);
                             typeProductSelect = selectItensPack.typeProduct;
                             const cPSelect = selectItensPack.composePack;
                             composePackSelect = cPSelect && cPSelect.length > 0 ? cPSelect : null;
                             listErrors.push(...selectItensPack.validadeError)
                        }
-                       
-                      
-                       
-                    //    console.log(typeProductSelect);
-                       console.log('-------------------------------------------------------------');
+     
 
                         // Send Validade 
                         productsValidade.push({
@@ -121,7 +113,7 @@ export class ValidadeProductsCSV {
 
         }
 
-        return { isValid, errorHeader, productsValidade };
+        return { errorHeader, productsValidade };
     }
 
     //Chegar numero de colunas
@@ -135,7 +127,7 @@ export class ValidadeProductsCSV {
         const validationMessages: string[] = [];
 
         if(this.checkNumberColumns(line)){
-            validationMessages.push(`Cabeçalho inválido, máximo de até ${this.limitColumns} colunas, essa linha contém (${line.length})`);
+            validationMessages.push(`Cabeçalho inválido, necessário ${this.limitColumns} colunas, essa linha contém (${line.length})`);
         }
         if (line[0].trim() !== 'product_code') {
             validationMessages.push('Cabeçalho product_code não encontrado');
@@ -155,7 +147,7 @@ export class ValidadeProductsCSV {
         const newPrice = Number(line[1]);
         
         if(this.checkNumberColumns(line)){
-            validationMessages.push(`Linha inválida, máximo de até ${this.limitColumns} colunas, essa linha contém (${line.length})`);
+            validationMessages.push(`Linha inválida, necessário ${this.limitColumns} colunas, essa linha contém (${line.length})`);
         }
         
         if (isNaN(code) || code <= 0) {

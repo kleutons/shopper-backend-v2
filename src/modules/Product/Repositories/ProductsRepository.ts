@@ -1,4 +1,5 @@
 import { db } from "../../../knex/database";
+import { TypeUpdateDB } from "../../../types/products";
 
 export class ProductRepository {
 
@@ -57,5 +58,27 @@ export class ProductRepository {
     
         }
 
+    }
+
+   async updateProducts(dataUpdate:TypeUpdateDB[] ){
+        const selectTable = db(this.table);
+        
+        const result: {updateAll:boolean, error?:string[]} = {updateAll: true};
+        
+
+        for (const item of dataUpdate) {
+            try {
+                await selectTable
+                .where('code', item.code)
+                .update({ sales_price: item.sales_price });
+                console.log(`Produto ${item.code} atualizado com sucesso.`);
+            } catch (err) {
+                console.error(`Erro ao atualizar produto: ${item.code}`, err);
+                result.updateAll = false;
+                result.error?.push(`Erro ao atualizar produto: ${item.code}`);
+            }
+        }
+
+        return result;
     }
 }
