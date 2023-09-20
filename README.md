@@ -68,7 +68,7 @@ http://localhost:3002/
 6. ROTAS Disponíveis
 - http://localhost:3002/product => Rota GET para listar todos produtos
 - http://localhost:3002/product?unique => Rota GET para listar produtos únicos, que não fazem parte de uma kit
-- localhost:3002/product?unique=false  => Rota GET para listar produtos que é corresponde um kit de produtos
+- http://localhost:3002/product?unique=false  => Rota GET para listar produtos que é corresponde um kit de produtos
 - http://localhost:3002/product/update-csv  => Rota POST para receber upload de arquivo CSV e retornar se está válido
 - http://localhost:3002/product/update-csv  => Rota PUT que também recebe upload de arquivo CSV e se for válido atualiza em massa o dados no banco de dados SQL
 
