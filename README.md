@@ -3,6 +3,10 @@
 Bem-vindo(a). Este é o desafio BACKEND, para a Shopper.com.br!
 O objetivo deste desafio é um teste técnico para avaliar habilidades em desenvolvimento de software.
 
+### Screenshots
+
+![App Screenshot](.github/prototype.png)
+
 # 🧠 Contexto
 ... Ver Repositório  FrontEnd ... 
 
