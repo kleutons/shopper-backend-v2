@@ -9,7 +9,7 @@ const routes_1 = __importDefault(require("./routers/routes"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const server = (0, fastify_1.fastify)();
-const port = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 10000;
+const port = process.env.PORT ? Number(process.env.PORT) : 4000;
 server.get('/', () => {
     return 'Server is Run!';
 });
@@ -20,6 +20,7 @@ server.register(cors_1.default, {
 });
 (0, routes_1.default)(server);
 server.listen({
+    host: '0.0.0.0',
     port: port
 }, (err, address) => {
     if (err) {
