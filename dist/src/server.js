@@ -2,7 +2,6 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const fastify_1 = require("fastify");
 const cors_1 = __importDefault(require("@fastify/cors"));
@@ -10,7 +9,7 @@ const routes_1 = __importDefault(require("./routers/routes"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const server = (0, fastify_1.fastify)();
-const port = (_a = Number(process.env.SERVER_PORT)) !== null && _a !== void 0 ? _a : 3333;
+const port = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 3333;
 server.get('/', () => {
     return 'Server is Run!';
 });
