@@ -6,6 +6,7 @@ O objetivo deste desafio é um teste técnico para avaliar habilidades em desenv
 ## [Projeto Online](https://shopper-v2.onrender.com/)
 
 - https://shopper-v2.onrender.com/
+- Por se tratar de um servidor backend gratuito de alcance internacional, é possível que a primeira exibição da página leve mais tempo do que o habitual.
 
 ### Screenshots
 
