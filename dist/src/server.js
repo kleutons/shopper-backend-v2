@@ -9,7 +9,7 @@ const routes_1 = __importDefault(require("./routers/routes"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const server = (0, fastify_1.fastify)();
-const port = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 3333;
+const port = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 10000;
 server.get('/', () => {
     return 'Server is Run!';
 });

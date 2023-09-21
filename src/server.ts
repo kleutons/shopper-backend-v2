@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const server = fastify();
-const port =  process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 3333;
+const port =  process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 10000;
 
 server.get('/', () => {
     return 'Server is Run!'
