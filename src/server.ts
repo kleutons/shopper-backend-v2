@@ -14,7 +14,21 @@ server.get('/', () => {
 
 // Registrar o plugin @fastify/cors
 server.register(fastifyCors, {
-    origin: "*", // Permite acesso de qualquer origem (não seguro para produção)
+    origin: (origin, cb) => {
+        if (origin === undefined) {
+          // não permitimos o acesso.
+          cb(new Error('Not allowed'), false);
+        } else {
+          const hostname = new URL(origin).hostname;
+          if (hostname === 'localhost' || hostname.match(/^([a-z0-9-]+\.)*vercel\.app$/)) {
+            // Permite o acesso se a origem corresponder a localhost ou a um domínio Vercel.app
+            cb(null, true);
+          } else {
+            // Recusa o acesso para outras origens
+            cb(new Error('Not allowed'), false);
+          }
+        }
+      },
     methods: "GET,POST,PUT,DELETE", // Métodos HTTP permitidos
 });
 
